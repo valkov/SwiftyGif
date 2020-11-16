@@ -13,6 +13,7 @@ import UIKit
     @objc optional func gifDidStop(sender: UIImageView)
     @objc optional func gifURLDidFinish(sender: UIImageView)
     @objc optional func gifURLDidFail(sender: UIImageView, url: URL, error: Error?)
+    @objc optional func gifFrameShown(sender: UIImageView, at index: Int)
 }
 
 public extension UIImageView {
@@ -291,6 +292,7 @@ public extension UIImageView {
         } else {
             currentImage = frameAtIndex(index: currentFrameIndex())
         }
+        delegate?.gifFrameShown?(sender: self, at: currentFrameIndex())
     }
     
     /// Get current frame index
